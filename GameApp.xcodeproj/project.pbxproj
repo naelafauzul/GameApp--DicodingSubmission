@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		910CABA62BBA9CE80010B328 /* Requirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910CABA52BBA9CE80010B328 /* Requirement.swift */; };
 		913464442BB7E9A50010F740 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913464432BB7E9A50010F740 /* AppDelegate.swift */; };
 		913464462BB7E9A50010F740 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913464452BB7E9A50010F740 /* SceneDelegate.swift */; };
 		913464482BB7E9A50010F740 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913464472BB7E9A50010F740 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		910CABA52BBA9CE80010B328 /* Requirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirement.swift; sourceTree = "<group>"; };
 		913464402BB7E9A50010F740 /* GameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		913464432BB7E9A50010F740 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		913464452BB7E9A50010F740 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				913464582BB7EA200010F740 /* GamesResponse.swift */,
 				9134645A2BB7EABF0010F740 /* Game.swift */,
+				910CABA52BBA9CE80010B328 /* Requirement.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				9134645B2BB7EABF0010F740 /* Game.swift in Sources */,
 				916942952BB94A6E00EC92CC /* AboutViewController.swift in Sources */,
 				913464442BB7E9A50010F740 /* AppDelegate.swift in Sources */,
+				910CABA62BBA9CE80010B328 /* Requirement.swift in Sources */,
 				913464672BB7EE120010F740 /* GamesListTableViewCell.swift in Sources */,
 				913464592BB7EA200010F740 /* GamesResponse.swift in Sources */,
 				913464692BB7EEA60010F740 /* GamesListViewController.swift in Sources */,

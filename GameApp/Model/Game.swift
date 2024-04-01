@@ -13,10 +13,12 @@ struct Game: Decodable {
     let slug: String
     let name: String
     let released: String
-    let tba: Bool
     let backgroundImage: String
     let rating: Double
-    let ratingTop: Double
+    let platforms: [Platform]
+    let playtime: Int
+    let metacritic: Int
+    let suggestionsCount: Int
 
     
     enum CodingKeys: String, CodingKey {
@@ -24,10 +26,13 @@ struct Game: Decodable {
         case slug
         case name
         case released
-        case tba
         case backgroundImage = "background_image"
         case rating
         case ratingTop = "rating_top"
+        case platforms
+        case playtime
+        case metacritic
+        case suggestionsCount = "suggestions_count"
 
     }
     
@@ -37,10 +42,12 @@ struct Game: Decodable {
         slug = try container.decodeIfPresent(String.self, forKey: .slug) ?? ""
         name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
         released = try container.decodeIfPresent(String.self, forKey: .released) ?? ""
-        tba = try container.decodeIfPresent(Bool.self, forKey: .tba) ?? false
         backgroundImage = try container.decodeIfPresent(String.self, forKey: .backgroundImage) ?? ""
         rating = try container.decodeIfPresent(Double.self, forKey: .rating) ?? 0.0
-        ratingTop = try container.decodeIfPresent(Double.self, forKey: .ratingTop) ?? 0.0
+        platforms = try container.decodeIfPresent([Platform].self, forKey: .platforms) ?? []
+        playtime = try container.decodeIfPresent(Int.self, forKey: .playtime) ?? 0
+        metacritic = try container.decodeIfPresent(Int.self, forKey: .metacritic) ?? 0
+        suggestionsCount = try container.decodeIfPresent(Int.self, forKey: .suggestionsCount) ?? 0
     }
     
     func formattedReleasedDate() -> String {

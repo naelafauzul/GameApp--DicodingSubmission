@@ -13,11 +13,11 @@ class ApiService {
     static let shared: ApiService = ApiService()
     private init() {}
     
-    private let BASE_URL = "https://api.rawg.io/api/games"
-    private let API_KEY = ""
+    private let BASE_URL = "https://api.rawg.io/api/"
+    private let API_KEY = "2611649569b64ffd99cb9864c33744ec"
     
     func loadLatestGames(completion: @escaping (Result<[Game], Error>) -> Void) {
-        if let url = URL(string: "\(BASE_URL)?key=\(API_KEY)") {
+        if let url = URL(string: "\(BASE_URL)games?key=\(API_KEY)") {
             let request = URLRequest(url: url)
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
