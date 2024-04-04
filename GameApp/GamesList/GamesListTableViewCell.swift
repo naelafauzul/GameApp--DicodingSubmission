@@ -8,7 +8,7 @@
 import UIKit
 
 class GamesListTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -18,18 +18,18 @@ class GamesListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-       setup()
+        setup()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
-    func setup(){
+    func setup() {
         thumbImageView.layer.cornerRadius = 8
         thumbImageView.layer.masksToBounds = true
     }
-
+    
 }

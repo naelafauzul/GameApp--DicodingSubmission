@@ -59,6 +59,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		91118F552BBE8B4500FB5602 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		913464372BB7E9A50010F740 = {
 			isa = PBXGroup;
 			children = (
@@ -80,9 +87,10 @@
 			children = (
 				9134645E2BB7EB1B0010F740 /* ApiService */,
 				913464572BB7EA0B0010F740 /* Model */,
-				916942912BB9473000EC92CC /* About */,
-				91FA8E5B2BB81AA80099F06E /* GameDetail */,
 				913464612BB7EC680010F740 /* GamesList */,
+				91FA8E5B2BB81AA80099F06E /* GameDetail */,
+				91118F552BBE8B4500FB5602 /* Favorite */,
+				916942912BB9473000EC92CC /* About */,
 				913464432BB7E9A50010F740 /* AppDelegate.swift */,
 				913464452BB7E9A50010F740 /* SceneDelegate.swift */,
 				913464472BB7E9A50010F740 /* ViewController.swift */,

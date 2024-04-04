@@ -15,10 +15,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var playTime: UILabel!
     @IBOutlet weak var suggestion: UILabel!
     @IBOutlet weak var metacritic: UILabel!
-    @IBOutlet weak var minimumReg: UILabel!
+    @IBOutlet weak var minimumReq: UILabel!
     @IBOutlet weak var minimum: UILabel!
     @IBOutlet weak var tools: UILabel!
-    
     
     var selectedGames: Game?
     
@@ -28,8 +27,6 @@ class DetailViewController: UIViewController {
         setup()
     }
     
-    
-    
     func setup() {
         if let games = selectedGames {
             nameLabel.text = games.name
@@ -38,7 +35,7 @@ class DetailViewController: UIViewController {
             playTime.text = "Playtime: \(String(games.playtime))"
             suggestion.text = "Suggestions: \(String(games.suggestionsCount))"
             metacritic.text = "Metacritic: \(String(games.metacritic))"
-            minimumReg.text = "Minimum Requirement"
+            minimumReq.text = "Minimum Requirement"
             
             if let platform = games.platforms.first {
                 if let minimumRequirement = platform.requirements_en?.minimum {
@@ -54,8 +51,6 @@ class DetailViewController: UIViewController {
                     tools.text = "No Tools"
                 }
             }
-            
-            
             
             if let imageUrl = URL(string: games.backgroundImage) {
                 ApiService.shared.downloadImage(from: imageUrl) { result in

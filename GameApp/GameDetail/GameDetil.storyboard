@@ -135,7 +135,7 @@
                         <outlet property="dateLabel" destination="hEj-GI-fJ3" id="bJw-nt-HUM"/>
                         <outlet property="metacritic" destination="yoJ-We-ehV" id="gXv-pr-DIF"/>
                         <outlet property="minimum" destination="5uX-YX-sUL" id="nXn-4T-ctk"/>
-                        <outlet property="minimumReg" destination="feC-C0-yYB" id="YlC-aa-iQo"/>
+                        <outlet property="minimumReq" destination="feC-C0-yYB" id="eyS-WG-P4H"/>
                         <outlet property="nameLabel" destination="Zp4-r4-IAj" id="WH3-Mp-ddI"/>
                         <outlet property="playTime" destination="J4u-KJ-zuF" id="J5W-hn-dRc"/>
                         <outlet property="ratingLabel" destination="Vgj-Nv-tcz" id="77X-SK-iKp"/>

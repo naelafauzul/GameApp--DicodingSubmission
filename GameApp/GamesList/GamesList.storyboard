@@ -84,7 +84,10 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="4cQ-Zi-Wyx">
-                        <barButtonItem key="rightBarButtonItem" image="person.fill" catalog="system" id="dT3-SJ-f0E"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="person.fill" catalog="system" id="dT3-SJ-f0E"/>
+                            <barButtonItem title="Item" image="heart.fill" catalog="system" id="pZj-bw-qgV"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="aboutButton" destination="dT3-SJ-f0E" id="ihD-cr-0a6"/>
@@ -115,6 +118,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="secondaryLabelColor">
