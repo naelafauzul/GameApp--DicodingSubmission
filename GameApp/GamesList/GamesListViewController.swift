@@ -49,7 +49,6 @@ class GamesListViewController: UIViewController {
             case .failure(let error):
                 print("Gagal memuat data: \(error)")
             }
-            
         }
     }
     

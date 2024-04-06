@@ -10,7 +10,7 @@ import UIKit
 class FavoriteViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var latestGamesList: [Game] = []
+    var favoriteGames: [Game] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,7 +32,7 @@ class FavoriteViewController: UIViewController {
     }
     
     func loadFavorites() {
-        latestGamesList = CoreDataService.shared.fetchFavorites()
+        favoriteGames = CoreDataService.shared.fetchFavorites()
         tableView.reloadData()
     }
 }
@@ -41,13 +41,13 @@ class FavoriteViewController: UIViewController {
 
 extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return latestGamesList.count
+        return favoriteGames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GamesListCell", for: indexPath) as! GamesListTableViewCell
         
-        let games = latestGamesList[indexPath.row]
+        let games = favoriteGames[indexPath.row]
         cell.titleLabel.text = games.name
         cell.ratingLabel.text = String(games.rating)
         cell.dateLabel.text = games.formattedReleasedDate()
@@ -72,7 +72,7 @@ extension FavoriteViewController: UITableViewDataSource {
 
 extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let games = latestGamesList[indexPath.row]
+        let games = favoriteGames[indexPath.row]
         
         let storyboard = UIStoryboard(name: "GameDetil", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
@@ -84,11 +84,10 @@ extension FavoriteViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
-                let gameId = latestGamesList[indexPath.row].id
+                let gameId = favoriteGames[indexPath.row].id
                 CoreDataService.shared.deleteFavorite(gameId: gameId)
     
-                latestGamesList.remove(at: indexPath.row)
-                
+                favoriteGames.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
 
                 loadFavorites()
