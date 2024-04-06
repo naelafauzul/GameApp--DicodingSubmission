@@ -9,6 +9,7 @@ import UIKit
 
 class GamesListViewController: UIViewController {
     @IBOutlet weak var aboutButton: UIBarButtonItem!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet var tableView: UITableView!
     
     var latestGamesList: [Game] = []
@@ -16,15 +17,14 @@ class GamesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        
         title = "Games"
         setup()
-        
-        // Menambahkan aksi untuk tombol "About"
+
         aboutButton.target = self
         aboutButton.action = #selector(aboutButtonTapped)
+        
+        favoriteButton.target = self
+        favoriteButton.action = #selector(favoriteButtonTapped)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +34,9 @@ class GamesListViewController: UIViewController {
     
     func setup(){
         loadLatestGames()
+        tableView.register(UINib(nibName: "GamesViewCell", bundle: nil), forCellReuseIdentifier: "GamesListCell")
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func loadLatestGames(){
@@ -57,6 +60,14 @@ class GamesListViewController: UIViewController {
         navigationController?.pushViewController(viewController, animated: true)
   
     }
+    
+    @objc func favoriteButtonTapped() {
+        let storyboard = UIStoryboard(name: "Favorite", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "FavoriteViewController") as! FavoriteViewController
+        
+        navigationController?.pushViewController(viewController, animated: true)
+  
+    }
 }
 
 extension GamesListViewController: UITableViewDataSource {
@@ -72,6 +83,9 @@ extension GamesListViewController: UITableViewDataSource {
         cell.ratingLabel.text = String(games.rating)
         cell.dateLabel.text = games.formattedReleasedDate()
         
+        let isFavorited = CoreDataService.shared.isFavorited(gameId: games.id)
+            cell.favoriteButton.setImage(UIImage(systemName: isFavorited ? "heart.fill" : "heart"), for: .normal)
+        
         if let imageUrl = URL(string: games.backgroundImage) {
             ApiService.shared.downloadImage(from: imageUrl) { result in
                 DispatchQueue.main.async {
@@ -84,6 +98,8 @@ extension GamesListViewController: UITableViewDataSource {
                 }
             }
         }
+        cell.delegate = self
+        cell.indexPath = indexPath
         
         return cell
     }
@@ -99,5 +115,35 @@ extension GamesListViewController: UITableViewDelegate {
         viewController.selectedGames = games
         
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension GamesListViewController: GameCellDelegate {
+    func didTapFavoriteButton(at indexPath: IndexPath) {
+        let game = latestGamesList[indexPath.row]
+
+        if CoreDataService.shared.isFavorited(gameId: game.id) {
+            CoreDataService.shared.deleteFavorite(gameId: game.id)
+
+            if let cell = tableView.cellForRow(at: indexPath) as? GamesListTableViewCell {
+                cell.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                showAlert(title: "Favorite removed", message: "Game removed from favorites")
+            }
+        } else {
+            CoreDataService.shared.saveFavorite(game: game)
+
+            if let cell = tableView.cellForRow(at: indexPath) as? GamesListTableViewCell {
+                cell.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                showAlert(title: "Favorite Added", message: "Game added to favorites")
+            }
+        }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

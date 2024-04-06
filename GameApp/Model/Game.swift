@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Game: Decodable {
+struct Game {
     let id: Int
     let slug: String
     let name: String
@@ -19,8 +19,22 @@ struct Game: Decodable {
     let playtime: Int
     let metacritic: Int
     let suggestionsCount: Int
-
     
+    init(_ data: FavoriteGame) {
+        self.id = Int(data.gameId)
+        self.slug = "" 
+        self.name = data.name ?? "no name"
+        self.released = data.released ?? "no date"
+        self.backgroundImage = data.backgroundImage ?? ""
+        self.rating = data.rating
+        self.platforms = []
+        self.playtime = 0
+        self.metacritic = 0
+        self.suggestionsCount = 0
+    }
+}
+
+extension Game: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
         case slug
