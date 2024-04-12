@@ -36,6 +36,7 @@ class DetailViewController: UIViewController {
             suggestion.text = "Suggestions: \(String(games.suggestionsCount))"
             metacritic.text = "Metacritic: \(String(games.metacritic))"
             minimumReq.text = "Minimum Requirement"
+            thumbImageView.kf.setImage(with: URL(string: games.backgroundImage))
             
             if let platform = games.platforms.first {
                 if let minimumRequirement = platform.requirements_en?.minimum {
@@ -52,18 +53,7 @@ class DetailViewController: UIViewController {
                 }
             }
             
-            if let imageUrl = URL(string: games.backgroundImage) {
-                ApiService.shared.downloadImage(from: imageUrl) { result in
-                    DispatchQueue.main.async {
-                        switch result{
-                        case .success(let image):
-                            self.thumbImageView.image = image
-                        case .failure:
-                            self.thumbImageView.image = nil
-                        }
-                    }
-                }
-            }
+            
         }
     }
 }

@@ -17,14 +17,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="4cQ-Zi-Wyx">
-                        <rightBarButtonItems>
-                            <barButtonItem image="person.fill" catalog="system" id="dT3-SJ-f0E"/>
-                            <barButtonItem title="Item" image="heart.fill" catalog="system" id="pZj-bw-qgV"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="person.fill" catalog="system" id="dT3-SJ-f0E"/>
                     </navigationItem>
                     <connections>
                         <outlet property="aboutButton" destination="dT3-SJ-f0E" id="ihD-cr-0a6"/>
-                        <outlet property="favoriteButton" destination="pZj-bw-qgV" id="d59-87-su9"/>
                         <outlet property="tableView" destination="mcx-Q6-pbg" id="1rb-Gt-rYb"/>
                     </connections>
                 </viewController>
@@ -52,7 +48,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

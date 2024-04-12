@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GameCellDelegate: AnyObject {
-    func didTapFavoriteButton(at indexPath: IndexPath)
+    func GameListTableViewCellFavoriteButton(_ cell: GamesListTableViewCell)
 }
 
 class GamesListTableViewCell: UITableViewCell {
@@ -22,7 +22,7 @@ class GamesListTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     
     @IBAction func didTpFavoriteButton(_ sender: Any) {
-        delegate?.didTapFavoriteButton(at: indexPath)
+        delegate?.GameListTableViewCellFavoriteButton(self)
     }
     
     override func awakeFromNib() {

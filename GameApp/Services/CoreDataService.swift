@@ -53,16 +53,15 @@ class CoreDataService {
  
     }
     
-    func deleteFavorite(gameId: Int) {
+    func removeFavorite(gameId: Int) {
         let request = FavoriteGame.fetchRequest()
         request.predicate = NSPredicate(format: "gameId = \(gameId)")
-        
         if let data = try? context.fetch(request).first {
             context.delete(data)
             
-        #if DEBUG
-        try? context.save()
-        #endif
+            #if DEBUG
+            try? context.save()
+            #endif
         }
     }
     
